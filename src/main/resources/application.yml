@@ -1,0 +1,19 @@
+server:
+  port: 8181
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    platform: postgres
+    url: jdbc:postgresql://localhost:5432/security_db
+    username: postgres
+    password: root
+  jpa:
+    database: postgresql
+    properties:
+      #      DISABLE JPA VERSION EXCEPTION
+      hibernate.temp.use_jdbc_metadata_defaults: false
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
