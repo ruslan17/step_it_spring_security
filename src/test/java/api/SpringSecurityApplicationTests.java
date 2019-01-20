@@ -20,5 +20,12 @@ public class SpringSecurityApplicationTests {
 
     }
 
+    public static void main(String[] args) {
+        String admin =
+                new BCryptPasswordEncoder()
+                        .encode("admin");
+        System.out.println(admin);
+    }
+
 }
 
