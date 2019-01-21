@@ -62,7 +62,6 @@ public class SecurityConfig
                 .addFilterBefore(authenticationTokenFilterBean(),
                         UsernamePasswordAuthenticationFilter.class);
 
-
     }
 
     @Override

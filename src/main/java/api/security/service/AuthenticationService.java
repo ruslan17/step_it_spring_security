@@ -19,18 +19,12 @@ public class AuthenticationService {
 
     private final TokenUtils tokenUtils;
 
-    private final UserDetailsService userDetailsService;
-
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationService(
             TokenUtils tokenUtils,
-            @Qualifier("securityUserService")
-                    UserDetailsService userDetailsService,
-            @Qualifier("customAuthenticationManager")
             AuthenticationManager authenticationManager) {
         this.tokenUtils = tokenUtils;
-        this.userDetailsService = userDetailsService;
         this.authenticationManager = authenticationManager;
     }
 
