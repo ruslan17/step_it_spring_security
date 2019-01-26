@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <b>Enter username:</b>
+    <input name="user_name" type="text" id="username">
+    <br>
+    <br>
+    <b>Enter password:</b>
+    <input name="user_password" type="text" id="password">
+
+    <button onclick="signIn()">SIGN IN</button>
+    <button onclick="getUser()">GET USER</button>
+</div>
+
+<script>
+
+    const URL = "http://localhost:8181";
+
+    let token;
+
+    function signIn() {
+
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+
+        fetch(URL + "/api/auth", {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        }).then(function (response) {
+            response.json()
+                .then(function (data) {
+                    token = data.token;
+                    console.log(token);
+                })
+        })
+
+    }
+
+    function getUser() {
+        console.log(token);
+
+        fetch(URL + "/api/users/find/1", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Auth-Token': token
+            }
+        }).then(function (response) {
+            response.json()
+                .then(function (data) {
+                    console.log(data);
+                })
+        })
+
+    }
+</script>
+
+</body>
+</html>

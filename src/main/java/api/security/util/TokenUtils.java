@@ -38,10 +38,9 @@ public class TokenUtils {
     private Claims getAllClaimsFromToken(String token) {
         return Jwts.parser()
                 .setSigningKey(secret)
-                .parseClaimsJwt(token)
+                .parseClaimsJws(token)
                 .getBody();
     }
-
 
     public String generateToken(String username) {
         Map<String, Object> claims = new HashMap<>();

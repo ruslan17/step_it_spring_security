@@ -1,6 +1,7 @@
 package api.security.filters;
 
 import api.security.util.TokenUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -75,10 +76,12 @@ public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFil
 
     }
 
+    @Autowired
     public void setTokenUtils(TokenUtils tokenUtils) {
         this.tokenUtils = tokenUtils;
     }
 
+    @Autowired
     public void setUserDetailsService(@Qualifier("securityUserService") UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }

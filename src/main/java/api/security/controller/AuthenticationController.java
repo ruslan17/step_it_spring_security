@@ -3,13 +3,11 @@ package api.security.controller;
 import api.security.model.dto.JwtAuthenticationRequest;
 import api.security.model.dto.JwtAuthenticationResponse;
 import api.security.service.AuthenticationService;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/api")
 @RestController
+@CrossOrigin(origins = "http://localhost:63342", allowCredentials = "false")
 public class AuthenticationController {
 
     private final AuthenticationService service;
