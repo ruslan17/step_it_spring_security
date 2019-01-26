@@ -1,5 +1,6 @@
 package api.security.config;
 
+import api.security.controller.EntryPointUnauthorizedHandler;
 import api.security.filters.AuthenticationTokenFilter;
 import api.security.service.SecurityUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +28,11 @@ public class SecurityConfig
 
     private final SecurityUserService userService;
 
-    public SecurityConfig(SecurityUserService userService) {
+    private final EntryPointUnauthorizedHandler unauthorizedHandler;
+
+    public SecurityConfig(SecurityUserService userService, EntryPointUnauthorizedHandler unauthorizedHandler) {
         this.userService = userService;
+        this.unauthorizedHandler = unauthorizedHandler;
     }
 
     @Bean
@@ -52,6 +56,8 @@ public class SecurityConfig
                 .cors()
                 .and()
                 .csrf().disable()
+                .exceptionHandling().authenticationEntryPoint(this.unauthorizedHandler)
+                .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()

@@ -3,6 +3,7 @@ package api.controller;
 import api.model.User;
 import api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class UserController {
         return repository.findAll();
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/find/{id}")
     public User findUser(@PathVariable Integer id) {
         return repository.findById(id).get();
