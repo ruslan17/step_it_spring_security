@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -30,6 +31,11 @@ public class UserController {
     @CheckAuthorities
     public User findUser(@PathVariable Integer userId) {
         return repository.findById(userId).get();
+    }
+
+    @PostMapping("/save")
+    public void save(@RequestBody @Valid User user) {
+        System.out.println(user);
     }
 
 }

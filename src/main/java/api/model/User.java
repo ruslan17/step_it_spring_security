@@ -5,6 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -16,9 +20,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @NotNull
+    @Size(min = 8, max = 15)
     private String username;
 
-    @JsonIgnore
+//    @JsonIgnore
+    @Size(min = 8, max = 25)
     private String password;
+
+    @Min(18)
+    @Max(150)
+    private Integer age;
 
 }

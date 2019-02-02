@@ -61,7 +61,7 @@ public class SecurityConfig
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/auth").permitAll()
+                .antMatchers("/api/auth", "/api/users/save").permitAll()
                 .anyRequest().authenticated(); // каждый реквест должен быть аутентифицирован
 
         http
