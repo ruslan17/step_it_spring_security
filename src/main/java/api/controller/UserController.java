@@ -1,5 +1,6 @@
 package api.controller;
 
+import api.annotations.CheckAuthorities;
 import api.model.User;
 import api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,14 +21,15 @@ public class UserController {
     }
 
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public List<User> findAll() {
         return repository.findAll();
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("/find/{id}")
-    public User findUser(@PathVariable Integer id) {
-        return repository.findById(id).get();
+    @GetMapping("/{userId}")
+    @CheckAuthorities
+    public User findUser(@PathVariable Integer userId) {
+        return repository.findById(userId).get();
     }
 
 }
